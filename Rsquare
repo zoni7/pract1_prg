@@ -1,3 +1,4 @@
+
 package pract1; 
  
 // Importa la classe Graph2D (en el paquet graph2D).
@@ -26,8 +27,8 @@ public class RSquare {
         delay();                                           
         // Calcul del canto superior esquerre (luX, luY) del quadrat
         // a partir del seu centre (cX, cY) i del costat l:
-        double luX = cx -l/2          ; // COMPLETAR 
-        double luY = cy + l/2          ; // COMPLETAR 
+        double luX = cX -l/2          ; // COMPLETAR 
+        double luY = cY + l/2          ; // COMPLETAR 
         
         // Dibuix d'un rectangle solid de color gris, de costats l x l,  
         // i del que el canto superior esquerre es troba en (luX, luY):
@@ -48,19 +49,19 @@ public class RSquare {
     public static void rSquareA(Graph2D gd, int n, 
                                 double cX, double cY, double l) {
         // COMPLETAR 
-        if (n == 1) { drawCentSquare(1, cX, _cY, l) }
+        if (n == 1) { drawCentSquare(gd, cX, cY, l); }
         else { 
-            int xl = cx -l/2;
-            int xr = cx + l/2; 
-            int yu = cy + l/2; 
-            int yd = cx - l/2;
+            double xl = cX -l/2;
+            double xr = cX + l/2; 
+            double yu = cY + l/2; 
+            double yd = cX - l/2;
             
-            rSquareA(gd, n - 1, xl , yu, l/2) ;
-            rSquareA(gd, n - 1, xr , yu, l/2) ;
+            rSquareA(gd, n - 1, xl , yu, l/2) ;           
             rSquareA(gd, n - 1, xl , yd, l/2) ;
+            rSquareA(gd, n - 1, xr , yu, l/2) ;
             rSquareA(gd, n - 1, xr , yd, l/2) ;
             
-            drawCentSquare(1, cX, _cY, l);
+            drawCentSquare(gd, cX, cY, l);
         }
     } 
     
@@ -68,7 +69,12 @@ public class RSquare {
      *  longitud 1 i centrada en (0, 0). 
      */
     public static void rSquareA(int n) {
-        // COMPLETAR        
+        // COMPLETAR 
+        
+        Graph2D gd = new Graph2D(-1.0, 1.0, -1.0, 1.0);
+        
+        
+        rSquareA( gd, n, 0, 0, 1);
     }
     
     /** Dibuixa en la finestra gd una RSquare-B d'ordre n >= 1, 
@@ -77,12 +83,36 @@ public class RSquare {
     public static void rSquareB(Graph2D gd, int n, 
                                 double cX, double cY, double l) {
         // COMPLETAR 
-    }     
+        
+        if (n == 1) { drawCentSquare(gd, cX, cY, l); }
+        else { 
+            drawCentSquare(gd, cX, cY, l);
+            
+            double xl = cX -l/2;
+            double xr = cX + l/2; 
+            double yu = cY + l/2; 
+            double yd = cX - l/2;
+            
+            rSquareB(gd, n - 1, xl , yu, l/2) ;           
+            rSquareB(gd, n - 1, xl , yd, l/2) ;
+            rSquareB(gd, n - 1, xr , yu, l/2) ;
+            rSquareB(gd, n - 1, xr , yd, l/2) ;
+            
+            
+    } 
+}
     
     /** Dibuixa una RSquare-B d'ordre n >= 1, 
      *  longitud 1 i centrada en (0, 0).
      */
     public static void rSquareB(int n) {
-        // COMPLETAR                  
+        // COMPLETAR   
+         Graph2D gd = new Graph2D(-1.0, 1.0, -1.0, 1.0);
+        
+        
+        rSquareB( gd, n, 0, 0, 1);
     }    
 }
+
+
+
